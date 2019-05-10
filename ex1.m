@@ -1,9 +1,12 @@
+%Constants
 xmin = -2.5;
 xmax = 2.5;
-nx = 51;
-xc = 0.75;
 ymin = -2;
 ymax = 2;
+
+
+nx = 51;
+xc = 0.75;
 ny = 41;
 yc = 0.5;
 Gamma = 3.0;
