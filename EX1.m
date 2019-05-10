@@ -1,15 +1,22 @@
 clear
 close all
 
+%Constants
 xmin = -2.5;
 xmax = 2.5;
-nx = 51;
-xc = 0.75;
 ymin = -2;
 ymax = 2;
-ny = 41;
-yc = 0.5;
 Gamma = 3.0;
+
+%Point Vector Position
+xc = 0.75;
+yc = 0.5;
+
+%Discretisation Steps
+nx = 51;
+ny = 41;
+
+%Iteration for x, y, and psi
 
 for i = 1:nx;
     for j = 1:ny;
