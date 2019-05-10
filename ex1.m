@@ -1,3 +1,6 @@
+clear
+close all
+
 xmin = -2.5;
 xmax = 2.5;
 nx = 51;
