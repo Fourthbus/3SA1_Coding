@@ -29,3 +29,4 @@ end
 c = -.4:.2:1.2;
 figure(1);
 contour(xm,ym,psi,c);
+title('Contour of Psi')
