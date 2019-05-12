@@ -1,18 +1,24 @@
 clear
 close all
 
+%Constants
 xmin = 0;
 xmax = 5;
 ymin = 0;
 ymax = 4;
+
+%Discretisation Steps
 nx = 51;
 ny = 41;
 nv = 100;
+
+%Vector Points
 xa = 4.1;
 ya = 1.3;
 xb = 2.2;
 yb = 2.9;
 
+%Exact solution of infa and infb
 for i =  1:nx;
     for j = 1:ny;
         xm(i,j) = xmin + (i-1)*(xmax-xmin)/(nx-1);
@@ -23,10 +29,13 @@ end
 
 figure(1);
 contour(xm,ym,infa);
+title('Contour of exact value of infa')
+
 figure(2);
 contour(xm,ym,infb);
+title('Contour of exact value of infb')
 
-%discretised voteces method
+%Estimated solution for infa
 gammaa = 1;
 gammab = 0;
 del = norm([xb-xa yb-ya]);
@@ -48,8 +57,9 @@ end
 
 figure(3)
 contour(xm,ym,infb_est)
+title('Contour of estimated value of infa')
 
-%discretised voteces method
+%Estimated solution for infb
 gammaa = 0;
 gammab = 1;
 del = norm([xb-xa yb-ya]);
@@ -71,3 +81,4 @@ end
 
 figure(4)
 contour(xm,ym,infb_est)
+title('Contour of estimated value of infb')

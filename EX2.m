@@ -1,6 +1,7 @@
 clear
 close all
 
+%Constants
 xmin = -2.5;
 xmax = 2.5;
 ymin = -2;
@@ -8,11 +9,15 @@ ymax = 2;
 del = 1.5;
 xc = .75;
 yc = 0.5;
+
+%Discretisation steps
 nx = 51;
 ny = 41;
 %Gamma = 3.0;
 nv = 100;
 
+
+%Solving for exact values of infa and infb
 for i =  1:nx;
     for j = 1:ny;
         xm(i,j) = xmin + (i-1)*(xmax-xmin)/(nx-1);
@@ -23,8 +28,11 @@ end
 c = -.15:.05:.15;
 figure(1)
 contour(xm,ym,infa,c)
+title('Contour of exact value of infa')
+
 figure(2)
 contour(xm,ym,infb,c)
+title('Contour of exact value of infb')
 
 %finding values for f_a by setting gamma_b=0
 gammaa = 1;
@@ -46,8 +54,9 @@ for i =  1:nv;
 end
 figure(3)
 contour(xm,ym,infa_est,c)
+title('Contour of estimated value of infa')
 
-%finding values for f_b by setting gamma_a=0
+%Solving for estimated value of inbf by assuming gamma_a=0
 gammaa = 0;
 gammab = 1;
 
@@ -68,3 +77,4 @@ for i =  1:nv;
 end
 figure(4)
 contour(xm,ym,infb_est,c)
+title('Contour of exact value of infb')
