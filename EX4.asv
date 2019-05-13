@@ -19,6 +19,14 @@ theta = (0:np)*2*pi/np;
 for i = 1:np+1;
     xs(i) = cos(theta(i));
     ys(i) = sin (theta (i));
+    if abs(xs(i))<1e-5;
+        xs(i)=0;
+    elseif abs(ys(i))<1e-5;
+        ys(i)=0;
+    else
+        xs(i)=xs(i);
+        ys(i)=ys(i);
+    end
     gamma(i) = -2*sin(theta(i));
 end
 
@@ -33,7 +41,7 @@ for i =  1:nx;
         for k = 1:np;
             [infa(i,j) infb(i,j)] = panelinf(xs(k),xs(k+1),ys(k),ys(k+1),xm(i,j),ym(i,j));
             %Sum of uniform flow, gamma_a*infa, and gamma_b*infb
-            psi(i,j) = psi (i,j) + .5*(gamma(k)+gamma(k+1))*infa(i,j) + 0.5*(gamma(k)+gamma(k+1))*infb(i,j);
+            psi(i,j) = psi (i,j) + gamma(k)*infa(i,j) + gamma(k)*infb(i,j);
         end
     end
 end
