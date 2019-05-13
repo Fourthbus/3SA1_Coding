@@ -23,10 +23,9 @@ function lhsmat = build_lhs(xs,ys)
             if i == 1;
                 lhsmat(i,j)=0;
             elseif i == np+1;
-                lhsmat(i,j)=0;
-            else
-                lhsmat(i,j) = psip(i+1,j)-psip(i,j);
-            end
+                
+                
+            lhsmat(i,j) = psip(i+1,j)-psip(i,j);
         end
     end
 end
