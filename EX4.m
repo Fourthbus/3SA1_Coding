@@ -40,6 +40,7 @@ end
 
 c = -1.75:0.25:1.75;
 contour(xm,ym,psi,c)
+title('Cylinder Flow Streamlines')
 hold on
 plot (xs,ys)
 hold off
