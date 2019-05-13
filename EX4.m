@@ -33,7 +33,7 @@ for i =  1:nx;
         for k = 1:np;
             [infa(i,j) infb(i,j)] = panelinf(xs(k),xs(k+1),ys(k),ys(k+1),xm(i,j),ym(i,j));
             %Sum of uniform flow, gamma_a*infa, and gamma_b*infb
-            psi(i,j) = psi (i,j) + .5*(gamma(k)+gamma(k+1))*infa(i,j) + 0.5*(gamma(k)+gamma(k+1))*infb(i,j);
+            psi(i,j) = psi (i,j) + gamma(k)*infa(i,j) + gamma(k+1)*infb(i,j);
         end
     end
 end

@@ -1,7 +1,0 @@
-function rhsvec = build_rhs(xs,ys,alpha);
-    np = length(xs)-1;
-    psifs = zeros(np+1);
-    for i=1:np+1;
-        psifs(i) = ys(i)*cos(alpha)-xs(i)*sin(alpha);
-    end
-    

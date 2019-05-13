@@ -21,9 +21,25 @@ alpha = 0;
 %Iteration for positions and circulation on sphere
 for i = 1:np+1;
     xs(i) = cos(theta(i));
-    ys(i) = sin (theta (i));
+    ys(i) = sin(theta(i));
 end
 
+%calculate gam
 A = build_lhs(xs,ys);
 b = build_rhs(xs,ys,alpha);
 gam = A\b;
+
+hold on
+plot(theta/pi,gam);
+
+alpha = 0.1;
+b = build_rhs(xs,ys,alpha);
+gam = A\b;
+plot(theta/pi,gam);
+hold off
+legend('alpha=0','alpha=0.1','Location','southeast');
+xlabel('theta/pi');
+ylabel('gamma');
+axis([0 2 -2.5 2.5]);
+title('Plot of gammas')
+
