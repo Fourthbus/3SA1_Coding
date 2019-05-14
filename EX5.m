@@ -41,5 +41,5 @@ legend('alpha=0','alpha=0.1','Location','southeast');
 xlabel('theta/pi');
 ylabel('gamma');
 axis([0 2 -2.5 2.5]);
-title('Plot of gammas')
+title('Plot of gammas against pi/theta')
 
