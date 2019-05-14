@@ -24,7 +24,7 @@ for i = 1:np+1;
     ys(i) = sin(theta(i));
 end
 
-%calculate gam
+%calculate gam with alpha=0
 A = build_lhs(xs,ys);
 b = build_rhs(xs,ys,alpha);
 gam = A\b;
@@ -32,9 +32,13 @@ gam = A\b;
 hold on
 plot(theta/pi,gam);
 
+%calculate gam with alpha=0.1
 alpha = 0.1;
 b = build_rhs(xs,ys,alpha);
 gam = A\b;
+%intrgrate surface circulation i.e. sum of gamma times panel length
+Gamma = sum(gam)*(theta(2)-theta(1))
+
 plot(theta/pi,gam);
 hold off
 legend('alpha=0','alpha=0.1','Location','southeast');
