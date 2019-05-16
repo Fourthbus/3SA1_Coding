@@ -1,3 +1,0 @@
-ReL = 2500;
-x = linspace(0,1,101);
-ue = linspace(1,1,101);
