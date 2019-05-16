@@ -13,7 +13,6 @@ for k = 1:length(grad);
     for i = 1:length(x);
         ue(i,k) = grad(k)*x(i)+1;
     end
-
     %iterate for theta/L
     for j=1:length(ReL);
         %reset laminar flag
@@ -25,8 +24,9 @@ for k = 1:length(grad);
             m(j,k,i) = -ReL(j)*(theta(j,k,i))^2*grad(k);
             H(j,k,i) = thwaites_lookup(m(j,k,i));
             He(j,k,i) = laminar_He(H(j,k,i));
-            if log(Rethet(j,k,i)) >= 18.4*He(j,k,i) - 21.74;
-                if laminar == true;
+            %here when laminar flag is false 
+            if laminar == true;
+                if log(Rethet(j,k,i)) >= 18.4*He(j,k,i) - 21.74;
                     laminar = false;
                     display([x(i), Rethet(j,k,i)/1000, ReL(j)/1e6, grad(k)]);
                 end
