@@ -1,3 +1,5 @@
+clear
+close all
 %input variables
 ReL = 2500;
 x = linspace(0,1,101);
@@ -17,3 +19,4 @@ thetab = 0.664/ReL^.5 .* (x).^.5;
 %plotting blasius
 plot(x,thetab);
 legend('analytical','Blasius','location','Southeast');
+hold off
