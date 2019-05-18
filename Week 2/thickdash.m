@@ -19,4 +19,9 @@ function dthickdx = thickdash(xmx0,thick);
     %calculate cf
     cf = 0.091448*((H-1)*Rethet)^(-.232)*exp(-1.260*H);
     %calculate cdiss
-    cdiss = 
+    cdiss = 0.010019*((H-1)*Rethet)^(-1/6);
+    %calculate f
+    dthickdx = zeros(2,1);
+    dthickdx(1) = cf/2 - (H+2) / ue * duedx * theta;
+    dthickdx(2) = cdiss - 3/ue * duedx * deltaE;
+end
