@@ -22,10 +22,12 @@ for i = 1:length(delx);
 end
 
 hold on
-plot(delx+x0,thickhist(1:length(thickhist)));
+plot(delx+x0,thickhist(:,1));
 plot(delx+x0,theta_7);
 plot(delx+x0,theta_9);
 xlabel('non dimensional position x/L');
 ylabel('non dimensional displacement thickness \theta/L');
 legend('Differential equation','1/7^{th} Power Law Estimate','1/9^{th} Power Law Estimate','location','Southeast');
 hold off
+%save pdf
+saveas(gcf,'EX4.pdf')
