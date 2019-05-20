@@ -1,85 +1,80 @@
 clear
 close all
-
 %Defining global variables value
 global Re ue0 duedx
-
-%Re and du/dx
-Re = 1e6;
+%define simulation conditions
+Re = 1e7;
+duedx = -.5;
 ue0 = 1;
-duedx = -1;
-
-%set boundary conditions
+%iteration setting & initial conditions
 n = 101;
 laminar = true;
 x = linspace(0,1,n);
+%%initialsing location pointers
+int = 0;    %natural transition
+ils = 0;    %laminar seperation
+itr = 0;    %turbulent reattachment
+its = 0;    %turbulent seperation
 
-%initialision matrices storing transitiona and separation locations
-int = 0;
-ils = 0;
-itr = 0;
-its = 0;
-
-%generating ue
+%generating ue matrix
 for i = 1:n;
     ue(i) = duedx*x(i)+ue0;
 end
-
-%laminar loop
+%initialising i
 i = 1;
-while laminar && i < n;
-    i = i+1;
+while laminar && i < n; %laminar loop
+    i = i+1;    %interpretation
     theta(i) = sqrt(.45/Re*(ue(i))^-6*ueintbit(0,ue(1),x(i),ue(i)));
     Rethet = theta(i)*Re*(ue(i));
     m = -Re*(theta(i))^2*duedx;
     H = thwaites_lookup(m);
     He(i) = laminar_He(H);
-    if log(Rethet) >= 18.4*He(i) - 21.74;
-        %If above condition is true, flow is no longer laminar
-        laminar = false;
-        int = i;
-    elseif m >= 0.09;
-        %If above condition is true, flow is no longer laminar
-        laminar = false;
+    if log(Rethet) >= 18.4*He(i) - 21.74;   %laminar check
+        laminar = false;    %laminar flag & end loop
+        int = i;    %set pointer
+    elseif m >= 0.09;   %seperation check
+        laminar = false;    %also end laminar loop & turbulent formula
         ils = i;
         He(i) = 1.51509;    %set He to seperated value
     end
 end
-%boubndary value for He
+
+%boubndary blasius value for He
 He(1) = 1.57258;
-%calculate deltaE value
+%calculate deltaE matrix
 deltaE = He.*theta;
 
-%turbulent loop
-while its == 0 && i < n;
-    thick0(1) = theta(i);
+while its == 0 && i < n;    %turbulent loop
+    thick0(1) = theta(i);   %y matrix, value at elemental plate's start
     thick0(2) = deltaE(i);
     i = i+1;
     [delx thickhist] = ode45(@thickdash,[0,x(i)-x(i-1)],thick0);
-    theta(i) = thickhist(length(delx),1);
+    theta(i) = thickhist(length(delx),1);   %assign value at elemental plate's end
     deltaE(i) = thickhist(length(delx),2);
     He(i) = deltaE(i)/theta(i);
-    %calculate H value (from thickdash alogorithm)
-    if He(i) >= 1.46;
-        H = (11*He(i)+15) / (48*He(i)-59);
-    else
-        H = 2.803;
-    end
-    %loop for turbulent reattachment
-    if ils ~= 0 && He(i) >= 1.58 && itr == 0;
+    if ils > 0 && He(i) >= 1.58 && itr == 0;   %reattachment check
         itr = i;
     end
-    %loop for turbulent seperation
-    if He(i) <= 1.46;
+    if He(i) <= 1.46;   %turbulent seperation check
         its = i;
+        H=2.803;    %H at seperation
     end
 end
 
-%final loop
-while i < n;
-    theta(i+1) = theta(i)*(ue(i)/ue(i+1))^(H+2);
+while i < n;    %final loop
+    theta(i+1) = theta(i)*(ue(i)/ue(i+1))^(H+2);    %theta for cf=0
     i = i+1;
-    He(i) = He (its);
+    He(i) = He (its);   %H and He stays as is
 end
 
-plot(x,He);
+figure(1);
+plot(x,He); %plot
+xlabel('non dimensional position x/L');
+ylabel('energy shape factor H_E');
+title(['Re_L=',num2str(Re),' du_e/dx=',num2str(duedx)]);
+
+figure(2);
+plot(x,theta); %plot
+xlabel('non dimensional position x/L');
+ylabel('non dimensional momentum thickness \theta/L');
+title(['Re_L=',num2str(Re),' du_e/dx=',num2str(duedx)]);

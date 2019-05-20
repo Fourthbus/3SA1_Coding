@@ -16,7 +16,7 @@ hold on
 plot(x,theta);
 xlabel('Non-dimensional position, x/L');
 ylabel('Non-dimensional momentum thickness, theta/L');
-title('Non-dimensional Momentum Thickness against Non-dimensional Position')
+title(['Re_L=',num2str(ReL)]);
 
 %Calculate Blasius Solution
 thetab = 0.664/ReL^.5 .* (x).^.5;
@@ -25,3 +25,5 @@ thetab = 0.664/ReL^.5 .* (x).^.5;
 plot(x,thetab);
 legend('Analytical','Blasius','location','Southeast');
 hold off
+%save pdf
+saveas(gcf,'EX1.pdf')

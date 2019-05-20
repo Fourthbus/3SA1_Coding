@@ -16,7 +16,6 @@ thick0(2) = 1.80 * thick0(1);
 [delx thickhist] = ode45(@thickdash,[0 0.99],thick0);
 
 for i = 1:length(delx);
-    
     theta_7(i) = 0.037 * (x0+delx(i)) * (Re * (x0+delx(i)))^(-1/5);
     theta_9(i) = 0.023 * (x0+delx(i)) * (Re * (x0+delx(i)))^(-1/6);
 end
@@ -28,6 +27,7 @@ plot(delx+x0,theta_9);
 xlabel('non dimensional position x/L');
 ylabel('non dimensional momentum thickness \theta/L');
 legend('Differential equation','1/7^{th} Power Law Estimate','1/9^{th} Power Law Estimate','location','Southeast');
+title(['Re_L=',num2str(Re),' du_e/dx=',num2str(duedx)]);
 hold off
 
 %save pdf

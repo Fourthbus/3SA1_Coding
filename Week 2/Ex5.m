@@ -28,7 +28,7 @@ plot([0 1],[1.46 1.46],'--');
 plot(delx+x0,He);
 xlabel('non dimensional position x/L');
 ylabel('Energy shape factor H_E');
-title('Plot under Re=10^7');
+title(['Re_L=',num2str(Re)]);
 
 %plot theta and deltaE
 figure(2);
@@ -38,7 +38,7 @@ plot(delx+x0,thickhist(:,2));
 xlabel('non dimensional position x/L');
 ylabel('non dimensional thickness');
 legend('\theta','\delta_E','location','Northwest');
-title('Plot under Re=10^7 d(u_e/U)/d(x/L) = -0.3');
+title(['Re_L=',num2str(Re),' d(u_e/U)/d(x/L)=',num2str(duedx)]);
 saveas(gcf,'EX5_1_2.pdf');
 hold off
 
@@ -61,7 +61,7 @@ plot(delx+x0,thickhist(:,2));
 xlabel('non dimensional position x/L');
 ylabel('non dimensional thickness');
 legend('\theta','\delta_E','location','Northwest');
-title('Plot under Re=10^7 d(u_e/U)/d(x/L) = -0.6');
+title(['Re_L=',num2str(Re),' d(u_e/U)/d(x/L)=',num2str(duedx)]);
 saveas(gcf,'EX5_1_3.pdf');
 hold off
 
@@ -86,7 +86,7 @@ plot(delx+x0,thickhist(:,2));
 xlabel('non dimensional position x/L');
 ylabel('non dimensional thickness');
 legend('\theta','\delta_E','location','Northwest');
-title('Plot under Re=10^7 d(u_e/U)/d(x/L) = -0.9');
+title(['Re_L=',num2str(Re),' d(u_e/U)/d(x/L)=',num2str(duedx)]);
 saveas(gcf,'EX5_1_4.pdf');
 hold off
 
