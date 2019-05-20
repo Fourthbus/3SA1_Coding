@@ -6,7 +6,7 @@ global Re ue0 duedx
 
 Re = 1e7;
 ue0 = 1;
-duedx = 0; %Not sure if duedx and ue0 is valid.
+duedx = 0;
 
 %Initial values of theta and delta_E
 x0 = 0.01;
@@ -26,8 +26,9 @@ plot(delx+x0,thickhist(:,1));
 plot(delx+x0,theta_7);
 plot(delx+x0,theta_9);
 xlabel('non dimensional position x/L');
-ylabel('non dimensional displacement thickness \theta/L');
+ylabel('non dimensional momentum thickness \theta/L');
 legend('Differential equation','1/7^{th} Power Law Estimate','1/9^{th} Power Law Estimate','location','Southeast');
 hold off
+
 %save pdf
 saveas(gcf,'EX4.pdf')

@@ -1,7 +1,7 @@
 clear
 close all
 
-%Onput x
+%Input x
 x = linspace(0,1,101);
 
 %Input variables for Re's du/dx's
