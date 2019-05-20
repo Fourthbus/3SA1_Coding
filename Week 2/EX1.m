@@ -1,22 +1,27 @@
 clear
 close all
-%input variables
+
+%Input variables
 ReL = 2500;
 x = linspace(0,1,101);
 ue = 1;
-%iterate for theta/L
+
+%Iterate for theta/L
 for i=1:length(x);
     theta(i) = sqrt(.45/ReL*(ue)^-6*ueintbit(0,ue,x(i),ue));
 end
-%plot of theta/L
+
+%Plot of Analytical Solution
 hold on
 plot(x,theta);
-xlabel('non dimensional position x/L');
-ylabel('non dimensional displacement theta/L');
+xlabel('Non-dimensional position, x/L');
+ylabel('Non-dimensional momentum thickness, theta/L');
+title('Non-dimensional Momentum Thickness against Non-dimensional Position')
 
-%calculate blasius
+%Calculate Blasius Solution
 thetab = 0.664/ReL^.5 .* (x).^.5;
-%plotting blasius
+
+%Plot Blasius Solution
 plot(x,thetab);
-legend('analytical','Blasius','location','Southeast');
+legend('Analytical','Blasius','location','Southeast');
 hold off
