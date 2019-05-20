@@ -28,11 +28,12 @@ for i =  1:nx;
 end
 
 figure(1);
-contour(xm,ym,infa);
+c = -.15:.05:.15;
+contour(xm,ym,infa,c);
 title('Contour of exact value of infa')
 
 figure(2);
-contour(xm,ym,infb);
+contour(xm,ym,infb,c);
 title('Contour of exact value of infb')
 
 %Estimated solution for infa
@@ -56,7 +57,7 @@ for i =  1:nv;
 end
 
 figure(3)
-contour(xm,ym,infb_est)
+contour(xm,ym,infb_est,c)
 title('Contour of estimated value of infa')
 
 %Estimated solution for infb
@@ -80,5 +81,5 @@ for i =  1:nv;
 end
 
 figure(4)
-contour(xm,ym,infb_est)
+contour(xm,ym,infb_est,c)
 title('Contour of estimated value of infb')

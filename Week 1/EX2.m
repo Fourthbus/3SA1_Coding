@@ -39,9 +39,9 @@ gammaa = 1;
 gammab = 0;
 nv = 100;
 
-for i =  1:nv;
+for i =  1:nx;
     for j = 1:ny;
-        xm(i,j) = xmin + (i-1)*(xmax-xmin)/(nv-1);
+        xm(i,j) = xmin + (i-1)*(xmax-xmin)/(nx-1);
         ym(i,j) = ymin + (j-1)*(ymax-ymin)/(ny-1);
         for k = 1:nv;
             Gamma(k) = (2*gammaa+(gammab-gammaa)/nv*(2*k-1))*del/nv/2;
@@ -60,9 +60,9 @@ title('Contour of estimated value of infa')
 gammaa = 0;
 gammab = 1;
 
-for i =  1:nv;
+for i =  1:nx;
     for j = 1:ny;
-        xm(i,j) = xmin + (i-1)*(xmax-xmin)/(nv-1);
+        xm(i,j) = xmin + (i-1)*(xmax-xmin)/(nx-1);
         ym(i,j) = ymin + (j-1)*(ymax-ymin)/(ny-1);
         %loop for every single discretised vortex on sheet
         for k = 1:nv;

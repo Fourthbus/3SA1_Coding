@@ -7,7 +7,7 @@ function lhsmat = build_lhs(xs,ys)
         %psip when j=1
         [psip(i,1) infb(i,1)] = panelinf(xs(1),xs(2),ys(1),ys(2),xs(i),ys(i));
         %psip when j=np+1 i.e. =infb(j-1)=infb(np)
-        [~,psip(i,np+1)] = panelinf(xs(np-1),xs(np+1),ys(np),ys(np+1),xs(i),ys(i));
+        [~,psip(i,np+1)] = panelinf(xs(np),xs(np+1),ys(np),ys(np+1),xs(i),ys(i));
         %psip for the rest
         for j = 2:np;
             [infa(i,j) infb(i,j)] = panelinf(xs(j),xs(j+1),ys(j),ys(j+1),xs(i),ys(i));

@@ -38,7 +38,7 @@ b = build_rhs(xs,ys,alpha);
 gam = A\b;
 %intrgrate surface circulation i.e. sum of gamma times panel length
 %Using small angle approximation, l = r* change in theta
-Gamma = sum(gam)*(theta(2)-theta(1))
+Gamma = sum(gam(1:length(gam)-1))*(theta(2)-theta(1))
 
 plot(theta/pi,gam);
 hold off
