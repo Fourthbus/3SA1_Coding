@@ -1,50 +1,84 @@
 clear
 close all
 
-%Discretisation of x
-x = linspace(0,1,101);
+%Defining global variables value
+global Re ue0 duedx
 
 %Re and du/dx
-ReL = 1e3 1e4 1e5;
-dudx = -.5;
+Re = 1e6;
+ue0 = 1;
+duedx = -5;
+
+%set boundary conditions
+n = 101;
+laminar = true;
+x = linspace(0,1,n);
 
 %initialision matrices storing transitiona and separation locations
 int = 0;
 ils = 0;
+itr = 0;
+its = 0;
 
-%Imposing the initial condition where flow is laminar
-%Reset laminar flag
-laminar = true;
+%generating ue
+for i = 1:n;
+    ue(i) = duedx*x(i)+ue0;
+end
 
-%Imposing the initial condition that flow is attached
-%Reset separation flag
-separation = false;
-
-for i = 1:length(x);
-    ue(i) = dudx*x(i)+1;
-
-    %Iterate for theta, Rethet, m, H, and He for various x positions
-    theta(i) = sqrt(.45/ReL*(ue(i)^-6*ueintbit(0,ue(1),x(i),ue(i)));
-    Rethet(i) = theta(i)*ReL*(ue(i));
-    m(i) = -ReL*(theta(i))^2*dudx;
-    H(i) = thwaites_lookup(m(i));
-    He(i) = laminar_He(H(i));
-
-    %Check for transition
-    if laminar == true;
-        if log(Rethet(i)) >= 18.4*He(i) - 21.74;
-            %If above condition is true, flow is no longer laminar
-            laminar = false;
-            int = x(i);
-        end
-    end
-
-    %Check for Separation
-    if separation == false;
-        if m(i) >= 0.09;
-            %If above is true, separation has occured.
-            separation = true;
-            ils = x(i);
-        end
+%laminar loop
+i = 1;
+while laminar && i < n;
+    i = i+1;
+    theta(i) = sqrt(.45/Re*(ue(i))^-6*ueintbit(0,ue(1),x(i),ue(i)));
+    Rethet = theta(i)*Re*(ue(i));
+    m = -Re*(theta(i))^2*duedx;
+    H = thwaites_lookup(m);
+    He(i) = laminar_He(H);
+    if log(Rethet) >= 18.4*He(i) - 21.74;
+        %If above condition is true, flow is no longer laminar
+        laminar = false;
+        int = i;
+    elseif m >= 0.09;
+        %If above condition is true, flow is no longer laminar
+        laminar = false;
+        ils = i;
+        He(i) = 1.51509;    %set He to seperated value
     end
 end
+%boubndary value for He
+He(1) = 1.57258;
+%calculate deltaE value
+deltaE = He.*theta;
+
+%turbulent loop
+while its == 0 && i < n;
+    thick0(1) = theta(i);
+    thick0(2) = deltaE(i);
+    i = i+1;
+    [delx thickhist] = ode45(@thickdash,[0,x(i)-x(i-1)],thick0);
+    theta(i) = thickhist(length(delx),1);
+    deltaE(i) = thickhist(length(delx),2);
+    He(i) = deltaE(i)/theta(i);
+    %calculate H value (from thickdash alogorithm)
+    if He(i) >= 1.46;
+        H = (11*He(i)+15) / (48*He(i)-59);
+    else
+        H = 2.803;
+    end
+    %loop for turbulent reattachment
+    if ils ~= 0 && He(i) >= 1.58 && itr == 0;
+        itr = i;
+    end
+    %loop for turbulent seperation
+    if He(i) <= 1.46;
+        its = i;
+    end
+end
+
+%final loop
+while i < n;
+    theta(i) = theta(i-1)*(ue(i-1)/ue(i))^(H+2);
+
+end
+
+plot(x,He);
