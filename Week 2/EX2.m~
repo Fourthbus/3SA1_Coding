@@ -15,27 +15,20 @@ for k = 1:length(grad);
     for i = 1:length(x);
         ue(i,k) = grad(k)*x(i)+1;
     end
-    
-    %Iterate for theta/L where j is each ReL condition
+    %iterate for theta/L
     for j=1:length(ReL);
-        
-        %Reset laminar flag
+        %reset laminar flag
         laminar = true;
-        
-        %Iterate for all x
+        %iterate for all x
         for i=1:length(x);
             theta(j,k,i) = sqrt(.45/ReL(j)*(ue(i,k))^-6*ueintbit(0,ue(1,k),x(i),ue(i,k)));
             Rethet(j,k,i) = theta(j,k,i)*ReL(j)*(ue(i,k));
             m(j,k,i) = -ReL(j)*(theta(j,k,i))^2*grad(k);
             H(j,k,i) = thwaites_lookup(m(j,k,i));
             He(j,k,i) = laminar_He(H(j,k,i));
-            
-            %Check for transition if flow is still laminar 
+            %here when laminar flag is false 
             if laminar == true;
                 if log(Rethet(j,k,i)) >= (18.4*He(j,k,i) - 21.74);
-                    
-                    %No longer laminar after transition
-                    %Set laminar to false, if loop stops
                     laminar = false;
                     display([x(i), Rethet(j,k,i)/1000, ReL(j)/1e6, grad(k)]);
                 end
