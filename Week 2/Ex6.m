@@ -1,12 +1,17 @@
 clear
 close all
 
-%Discretisation of x
-x = linspace(0,1,101);
+%Defining global variables value
+global Re ue0 duedx
 
 %Re and du/dx
-ReL = 1e3;
-dudx = -.5;
+Re = 1e3;
+duedx = -.5;
+
+%boundary conditions
+x0 = 0.01;
+thick0(1) = 0.037*x0*(Re*x0)^(-1/5);
+thick0(2) = 1.80 * thick0(1);
 
 %initialision matrices storing transitiona and separation locations
 int = 0;
@@ -20,13 +25,14 @@ laminar = true;
 %Reset separation flag
 separation = false;
 
+
 for i = 1:length(x);
-    ue(i) = dudx*x(i)+1;
+    ue(i) = duedx*x(i)+1;
 
     %Iterate for theta, Rethet, m, H, and He for various x positions
-    theta(i) = sqrt(.45/ReL*(ue(i))^-6*ueintbit(0,ue(1),x(i),ue(i)));
-    Rethet(i) = theta(i)*ReL*(ue(i));
-    m(i) = -ReL*(theta(i))^2*dudx;
+    theta(i) = sqrt(.45/Re*(ue(i))^-6*ueintbit(0,ue(1),x(i),ue(i)));
+    Rethet(i) = theta(i)*Re*(ue(i));
+    m(i) = -Re*(theta(i))^2*duedx;
     H(i) = thwaites_lookup(m(i));
     He(i) = laminar_He(H(i));
 

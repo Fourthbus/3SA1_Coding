@@ -1,4 +1,4 @@
-00101clear
+clear
 close all
 %input x
 x = linspace(0,1,101);

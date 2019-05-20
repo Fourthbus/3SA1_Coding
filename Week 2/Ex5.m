@@ -8,7 +8,7 @@ Re = 1e7;
 ue0 = 1;
 duedx = -.3;
 
-%Initial values of theta and delta_E
+%Boundary values of theta and delta_E
 x0 = 0.01;
 thick0(1) = 0.037*x0*(Re*x0)^(-1/5);
 thick0(2) = 1.80 * thick0(1);
