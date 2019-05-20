@@ -4,9 +4,9 @@ close all
 %Defining global variables value
 global Re ue0 duedx
 
-Re = 1e7;
+Re = 1e6;
 ue0 = 1;
-duedx = -.3;
+duedx = -.6;
 
 %Initial values of theta and delta_E
 x0 = 0.01;
@@ -28,7 +28,7 @@ plot([0 1],[1.46 1.46],'--');
 plot(delx+x0,He);
 xlabel('non dimensional position x/L');
 ylabel('Energy shape factor H_E');
-title('Plot under Re=10^7');
+title('Plot under d(u_e/U)/d(x/L) = -0.6');
 
 %plot theta and deltaE
 figure(2);
@@ -38,13 +38,13 @@ plot(delx+x0,thickhist(:,2));
 xlabel('non dimensional position x/L');
 ylabel('non dimensional thickness');
 legend('\theta','\delta_E','location','Northwest');
-title('Plot under Re=10^7 d(u_e/U)/d(x/L) = -0.3');
-saveas(gcf,'EX5_1_2.pdf');
+title('Plot under Re=10^6 d(u_e/U)/d(x/L) = -0.6');
+saveas(gcf,'EX5_2_2.pdf');
 hold off
 
 %plotting duedx = -.6
 clear He
-duedx = -.6;
+Re = 1e7;
 [delx thickhist] = ode45(@thickdash,[0 0.99],thick0);
 for i = 1:length(delx);
     He(i) = thickhist(i,2)/thickhist(i,1);
@@ -62,12 +62,12 @@ xlabel('non dimensional position x/L');
 ylabel('non dimensional thickness');
 legend('\theta','\delta_E','location','Northwest');
 title('Plot under Re=10^7 d(u_e/U)/d(x/L) = -0.6');
-saveas(gcf,'EX5_1_3.pdf');
+saveas(gcf,'EX5_2_3.pdf');
 hold off
 
 %plotting duedx = -.9
 clear He
-duedx = -.9;
+Re = 1e8;
 [delx thickhist] = ode45(@thickdash,[0 0.99],thick0);
 for i = 1:length(delx);
     He(i) = thickhist(i,2)/thickhist(i,1);
@@ -75,8 +75,8 @@ end
 %plot He
 figure(1);
 plot(delx+x0,He);
-legend('H_E = 1.46 Seperation condition','d(u_e/U)/d(x/L) = -0.3','d(u_e/U)/d(x/L) = -0.6','d(u_e/U)/d(x/L) = -0.9','location','Southwest');
-saveas(gcf,'EX5_1_1.pdf')
+legend('H_E = 1.46 Seperation condition','Re = 10^6','Re = 10^7','Re = 10^8','location','Southwest');
+saveas(gcf,'EX5_2_1.pdf')
 
 %plot theta and deltaE
 figure(4);
@@ -86,8 +86,8 @@ plot(delx+x0,thickhist(:,2));
 xlabel('non dimensional position x/L');
 ylabel('non dimensional thickness');
 legend('\theta','\delta_E','location','Northwest');
-title('Plot under Re=10^7 d(u_e/U)/d(x/L) = -0.9');
-saveas(gcf,'EX5_1_4.pdf');
+title('Plot under Re=10^8 d(u_e/U)/d(x/L) = -0.6');
+saveas(gcf,'EX5_2_4.pdf');
 hold off
 
 hold off
