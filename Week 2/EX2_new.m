@@ -3,7 +3,7 @@ close all
 
 %Input Conditions, change according to required by Exercise
 Re = 1e6;
-duedx = -.5;
+duedx = -.2;
 
 %Initial Conditions and Discretisation steps
 n = 101;

@@ -1,12 +1,12 @@
 clear
-close all
+%close all
 
 %Defining global variables value
 global Re ue0 duedx
 
 %Define simulation conditions
-Re = 1e7;
-duedx = -.5;
+Re = 1e6;
+duedx = -.25;
 ue0 = 1;
 
 %Iteration setting & initial conditions
@@ -78,16 +78,16 @@ while i < n;    %final loop
     He(i) = He (its);   %H assumed to remain constant since He is constant
 end
 
-figure(1);
-plot(x,He); %plot
-xlabel('non dimensional position x/L');
-ylabel('energy shape factor H_E');
-title(['Re_L=',num2str(Re),' du_e/dx=',num2str(duedx)]);
-saveas(gcf,'EX6_1.pdf')
+%plotting code -- manually input at command prompt
+%figure(1);
+%plot(x,He); %plot
+%xlabel('non dimensional position x/L');
+%ylabel('energy shape factor H_E');
+%title(['Re_L=',num2str(Re),' du_e/dx=',num2str(duedx)]);
 
-figure(2);
-plot(x,theta); %plot
-xlabel('non dimensional position x/L');
-ylabel('non dimensional momentum thickness \theta/L');
-title(['Re_L=',num2str(Re),' du_e/dx=',num2str(duedx)]);
-saveas(gcf,'EX6_2.pdf')
+%figure(2);
+%plot(x,theta); %plot
+%xlabel('non dimensional position x/L');
+%ylabel('non dimensional momentum thickness \theta/L');
+%title(['Re_L=',num2str(Re),' du_e/dx=',num2str(duedx)]);
+%saveas(gcf,'EX6_2.pdf')
