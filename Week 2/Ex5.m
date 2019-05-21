@@ -15,16 +15,17 @@ thick0(2) = 1.80 * thick0(1);
 
 [delx thickhist] = ode45(@thickdash,[0 0.99],thick0);
 
-%calculate He
+%Calculate He
 for i = 1:length(delx);
     He(i) = thickhist(i,2)/thickhist(i,1);
 end
 
 figure(1);
 hold on
-%plot reference value
+%Plot reference value
 plot([0 1],[1.46 1.46],'--');
-%plot He
+
+%Plot He
 plot(delx+x0,He);
 xlabel('non dimensional position x/L');
 ylabel('Energy shape factor H_E');
@@ -42,18 +43,19 @@ title(['Re_L=',num2str(Re),' d(u_e/U)/d(x/L)=',num2str(duedx)]);
 saveas(gcf,'EX5_1_2.pdf');
 hold off
 
-%plotting duedx = -.6
+%Plotting duedx = -.6
 clear He
 duedx = -.6;
 [delx thickhist] = ode45(@thickdash,[0 0.99],thick0);
 for i = 1:length(delx);
     He(i) = thickhist(i,2)/thickhist(i,1);
 end
-%plot He
+
+%Plot He
 figure(1)
 plot(delx+x0,He);
 
-%plot theta and deltaE
+%Plot theta and deltaE
 figure(3);
 hold on
 plot(delx+x0,thickhist(:,1));
@@ -65,20 +67,21 @@ title(['Re_L=',num2str(Re),' d(u_e/U)/d(x/L)=',num2str(duedx)]);
 saveas(gcf,'EX5_1_3.pdf');
 hold off
 
-%plotting duedx = -.9
+%Plotting duedx = -.9
 clear He
 duedx = -.9;
 [delx thickhist] = ode45(@thickdash,[0 0.99],thick0);
 for i = 1:length(delx);
     He(i) = thickhist(i,2)/thickhist(i,1);
 end
-%plot He
+
+%Plot He
 figure(1);
 plot(delx+x0,He);
-legend('H_E = 1.46 Seperation condition','d(u_e/U)/d(x/L) = -0.3','d(u_e/U)/d(x/L) = -0.6','d(u_e/U)/d(x/L) = -0.9','location','Southwest');
+legend('H_E = 1.46 Separation condition','d(u_e/U)/d(x/L) = -0.3','d(u_e/U)/d(x/L) = -0.6','d(u_e/U)/d(x/L) = -0.9','location','Southwest');
 saveas(gcf,'EX5_1_1.pdf')
 
-%plot theta and deltaE
+%Plot theta and deltaE
 figure(4);
 hold on
 plot(delx+x0,thickhist(:,1));

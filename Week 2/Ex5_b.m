@@ -28,7 +28,7 @@ plot([0 1],[1.46 1.46],'--');
 plot(delx+x0,He);
 xlabel('non dimensional position x/L');
 ylabel('Energy shape factor H_E');
-title('Plot under d(u_e/U)/d(x/L) = -0.6');
+title('Plot For d(u_e/U)/d(x/L) = -0.6');
 
 %plot theta and deltaE
 figure(2);
@@ -38,7 +38,7 @@ plot(delx+x0,thickhist(:,2));
 xlabel('non dimensional position x/L');
 ylabel('non dimensional thickness');
 legend('\theta','\delta_E','location','Northwest');
-title('Plot under Re=10^6 d(u_e/U)/d(x/L) = -0.6');
+title('Plot For Re=10^6 d(u_e/U)/d(x/L) = -0.6');
 saveas(gcf,'EX5_2_2.pdf');
 hold off
 
@@ -61,7 +61,7 @@ plot(delx+x0,thickhist(:,2));
 xlabel('non dimensional position x/L');
 ylabel('non dimensional thickness');
 legend('\theta','\delta_E','location','Northwest');
-title('Plot under Re=10^7 d(u_e/U)/d(x/L) = -0.6');
+title('Plot For Re=10^7 d(u_e/U)/d(x/L) = -0.6');
 saveas(gcf,'EX5_2_3.pdf');
 hold off
 
@@ -75,7 +75,7 @@ end
 %plot He
 figure(1);
 plot(delx+x0,He);
-legend('H_E = 1.46 Seperation condition','Re = 10^6','Re = 10^7','Re = 10^8','location','Southwest');
+legend('H_E = 1.46 Separation condition','Re = 10^6','Re = 10^7','Re = 10^8','location','Southwest');
 saveas(gcf,'EX5_2_1.pdf')
 
 %plot theta and deltaE
@@ -86,7 +86,7 @@ plot(delx+x0,thickhist(:,2));
 xlabel('non dimensional position x/L');
 ylabel('non dimensional thickness');
 legend('\theta','\delta_E','location','Northwest');
-title('Plot under Re=10^8 d(u_e/U)/d(x/L) = -0.6');
+title('Plot For Re=10^8 d(u_e/U)/d(x/L) = -0.6');
 saveas(gcf,'EX5_2_4.pdf');
 hold off
 
