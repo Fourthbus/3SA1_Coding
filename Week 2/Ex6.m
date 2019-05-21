@@ -1,16 +1,20 @@
 clear
 close all
+
 %Defining global variables value
 global Re ue0 duedx
-%define simulation conditions
+
+%Define simulation conditions
 Re = 1e7;
 duedx = -.5;
 ue0 = 1;
-%iteration setting & initial conditions
+
+%Iteration setting & initial conditions
 n = 101;
 laminar = true;
 x = linspace(0,1,n);
-%%initialsing location pointers
+
+%%initialsing indicators
 int = 0;    %natural transition
 ils = 0;    %laminar seperation
 itr = 0;    %turbulent reattachment
@@ -20,6 +24,7 @@ its = 0;    %turbulent seperation
 for i = 1:n;
     ue(i) = duedx*x(i)+ue0;
 end
+
 %initialising i
 i = 1;
 while laminar && i < n; %laminar loop
@@ -39,12 +44,14 @@ while laminar && i < n; %laminar loop
     end
 end
 
-%boubndary blasius value for He
+%Value for He for Laminar Flow
 He(1) = 1.57258;
-%calculate deltaE matrix
+
+%Calculate deltaE matrix
 deltaE = He.*theta;
 
-while its == 0 && i < n;    %turbulent loop
+%Turbulent Loop
+while its == 0 && i < n;    
     thick0(1) = theta(i);   %y matrix, value at elemental plate's start
     thick0(2) = deltaE(i);
     i = i+1;
@@ -52,9 +59,13 @@ while its == 0 && i < n;    %turbulent loop
     theta(i) = thickhist(length(delx),1);   %assign value at elemental plate's end
     deltaE(i) = thickhist(length(delx),2);
     He(i) = deltaE(i)/theta(i);
-    if ils > 0 && He(i) >= 1.58 && itr == 0;   %reattachment check
+    
+    %Check for turbulent reattachment
+    if ils > 0 && He(i) >= 1.58 && itr == 0;   
         itr = i;
     end
+    
+    %Check for turbulent separation
     if He(i) <= 1.46;   %turbulent seperation check
         its = i;
         H=2.803;    %H at seperation
@@ -64,7 +75,7 @@ end
 while i < n;    %final loop
     theta(i+1) = theta(i)*(ue(i)/ue(i+1))^(H+2);    %theta for cf=0
     i = i+1;
-    He(i) = He (its);   %H and He stays as is
+    He(i) = He (its);   %H assumed to remain constant since He is constant
 end
 
 figure(1);
@@ -72,9 +83,11 @@ plot(x,He); %plot
 xlabel('non dimensional position x/L');
 ylabel('energy shape factor H_E');
 title(['Re_L=',num2str(Re),' du_e/dx=',num2str(duedx)]);
+saveas(gcf,'EX6_1.pdf')
 
 figure(2);
 plot(x,theta); %plot
 xlabel('non dimensional position x/L');
 ylabel('non dimensional momentum thickness \theta/L');
 title(['Re_L=',num2str(Re),' du_e/dx=',num2str(duedx)]);
+saveas(gcf,'EX6_2.pdf')
