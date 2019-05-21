@@ -1,5 +1,5 @@
 clear
-%close all
+close all
 
 %Defining global variables value
 global Re ue0 duedx
