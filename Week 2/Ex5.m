@@ -32,16 +32,16 @@ ylabel('Energy shape factor H_E');
 title(['Re_L=',num2str(Re)]);
 
 %plot theta and deltaE
-figure(2);
-hold on
-plot(delx+x0,thickhist(:,1));
-plot(delx+x0,thickhist(:,2));
-xlabel('non dimensional position x/L');
-ylabel('non dimensional thickness');
-legend('\theta','\delta_E','location','Northwest');
-title(['Re_L=',num2str(Re),' d(u_e/U)/d(x/L)=',num2str(duedx)]);
-saveas(gcf,'EX5_1_2.pdf');
-hold off
+%figure(2);
+%hold on
+%plot(delx+x0,thickhist(:,1));
+%plot(delx+x0,thickhist(:,2));
+%xlabel('non dimensional position x/L');
+%ylabel('non dimensional thickness');
+%legend('\theta','\delta_E','location','Northwest');
+%title(['Re_L=',num2str(Re),' d(u_e/U)/d(x/L)=',num2str(duedx)]);
+%saveas(gcf,'EX5_1_2.pdf');
+%hold off
 
 %Plotting duedx = -.6
 clear He
@@ -56,7 +56,7 @@ figure(1)
 plot(delx+x0,He);
 
 %Plot theta and deltaE
-figure(3);
+figure(2);
 hold on
 plot(delx+x0,thickhist(:,1));
 plot(delx+x0,thickhist(:,2));
@@ -82,15 +82,15 @@ legend('H_E = 1.46 Separation condition','d(u_e/U)/d(x/L) = -0.3','d(u_e/U)/d(x/
 saveas(gcf,'EX5_1_1.pdf')
 
 %Plot theta and deltaE
-figure(4);
-hold on
-plot(delx+x0,thickhist(:,1));
-plot(delx+x0,thickhist(:,2));
-xlabel('non dimensional position x/L');
-ylabel('non dimensional thickness');
-legend('\theta','\delta_E','location','Northwest');
-title(['Re_L=',num2str(Re),' d(u_e/U)/d(x/L)=',num2str(duedx)]);
-saveas(gcf,'EX5_1_4.pdf');
-hold off
+%figure(4);
+%hold on
+%plot(delx+x0,thickhist(:,1));
+%plot(delx+x0,thickhist(:,2));
+%xlabel('non dimensional position x/L');
+%ylabel('non dimensional thickness');
+%legend('\theta','\delta_E','location','Northwest');
+%title(['Re_L=',num2str(Re),' d(u_e/U)/d(x/L)=',num2str(duedx)]);
+%saveas(gcf,'EX5_1_4.pdf');
+%hold off
 
 hold off

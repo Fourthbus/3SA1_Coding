@@ -31,16 +31,16 @@ ylabel('Energy shape factor H_E');
 title('Plot For d(u_e/U)/d(x/L) = -0.6');
 
 %plot theta and deltaE
-figure(2);
-hold on
-plot(delx+x0,thickhist(:,1));
-plot(delx+x0,thickhist(:,2));
-xlabel('non dimensional position x/L');
-ylabel('non dimensional thickness');
-legend('\theta','\delta_E','location','Northwest');
-title('Plot For Re=10^6 d(u_e/U)/d(x/L) = -0.6');
-saveas(gcf,'EX5_2_2.pdf');
-hold off
+%figure(2);
+%hold on
+%plot(delx+x0,thickhist(:,1));
+%plot(delx+x0,thickhist(:,2));
+%xlabel('non dimensional position x/L');
+%ylabel('non dimensional thickness');
+%legend('\theta','\delta_E','location','Northwest');
+%title('Plot For Re=10^6 d(u_e/U)/d(x/L) = -0.6');
+%saveas(gcf,'EX5_2_2.pdf');
+%hold off
 
 %plotting duedx = -.6
 clear He
@@ -54,16 +54,16 @@ figure(1)
 plot(delx+x0,He);
 
 %plot theta and deltaE
-figure(3);
-hold on
-plot(delx+x0,thickhist(:,1));
-plot(delx+x0,thickhist(:,2));
-xlabel('non dimensional position x/L');
-ylabel('non dimensional thickness');
-legend('\theta','\delta_E','location','Northwest');
-title('Plot For Re=10^7 d(u_e/U)/d(x/L) = -0.6');
-saveas(gcf,'EX5_2_3.pdf');
-hold off
+%figure(3);
+%hold on
+%plot(delx+x0,thickhist(:,1));
+%plot(delx+x0,thickhist(:,2));
+%xlabel('non dimensional position x/L');
+%ylabel('non dimensional thickness');
+%legend('\theta','\delta_E','location','Northwest');
+%title('Plot For Re=10^7 d(u_e/U)/d(x/L) = -0.6');
+%saveas(gcf,'EX5_2_3.pdf');
+%hold off
 
 %plotting duedx = -.9
 clear He
@@ -79,15 +79,15 @@ legend('H_E = 1.46 Separation condition','Re = 10^6','Re = 10^7','Re = 10^8','lo
 saveas(gcf,'EX5_2_1.pdf')
 
 %plot theta and deltaE
-figure(4);
-hold on
-plot(delx+x0,thickhist(:,1));
-plot(delx+x0,thickhist(:,2));
-xlabel('non dimensional position x/L');
-ylabel('non dimensional thickness');
-legend('\theta','\delta_E','location','Northwest');
-title('Plot For Re=10^8 d(u_e/U)/d(x/L) = -0.6');
-saveas(gcf,'EX5_2_4.pdf');
-hold off
+%figure(4);
+%hold on
+%plot(delx+x0,thickhist(:,1));
+%plot(delx+x0,thickhist(:,2));
+%xlabel('non dimensional position x/L');
+%ylabel('non dimensional thickness');
+%legend('\theta','\delta_E','location','Northwest');
+%title('Plot For Re=10^8 d(u_e/U)/d(x/L) = -0.6');
+%saveas(gcf,'EX5_2_4.pdf');
+%hold off
 
 hold off
