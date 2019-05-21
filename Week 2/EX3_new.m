@@ -2,7 +2,7 @@ clear
 close all
 
 %Input Conditions, change according to required by Exercise
-Re = 1e4;
+Re = 1792000;
 duedx = -.5;
 
 %Initial Conditions and Discretisation steps
