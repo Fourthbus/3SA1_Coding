@@ -5,8 +5,8 @@ clear
 global Re ue0 duedx
 
 %Define simulation conditions
-Re = 1e6;
-duedx = -.25;
+Re = 1e7;
+duedx = 0;
 ue0 = 1;
 
 %Iteration setting & initial conditions
