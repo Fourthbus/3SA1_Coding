@@ -22,13 +22,10 @@ end
 
 %To initialise loop
 i=1; 
-for k = 1:length(Re);
-    laminar = true;
-    ils = 0;
-    int = 0;
-    while laminar && i < n; %laminar loop
+    while i < n; %laminar loop
         i = i+1;    %Increase interation counter
-
+        
+        for k = 1:length(Re);
         %Solve for theta, Rethet, m, H, He
         theta(i) = sqrt(.45/Re(k)*(ue(i))^-6*ueintbit(0,ue(1),x(i),ue(i)));
         Rethet = theta(i)*Re(k)*(ue(i));
@@ -46,7 +43,8 @@ for k = 1:length(Re);
                 laminar = false;    %Flow no longer laminar
                 ils = i;    %Save iteration where transition occurs
             end
-        if int ~= 0
+            
+        if int ~= 0 && int < ils;
             disp(['Natural transition at ' num2str(Re(k))])
             break
     end
