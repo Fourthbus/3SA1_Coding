@@ -21,11 +21,14 @@ for i = 1:n;
 end
 
 %To initialise loop
-i=1; 
-    while i < n; %laminar loop
+for k = 1:length(Re);
+    i=1;
+    int = 0;
+    ils = 0;
+    laminar = true;
+    
+    while laminar && i < n; %laminar loop
         i = i+1;    %Increase interation counter
-        
-        for k = 1:length(Re);
         %Solve for theta, Rethet, m, H, He
         theta(i) = sqrt(.45/Re(k)*(ue(i))^-6*ueintbit(0,ue(1),x(i),ue(i)));
         Rethet = theta(i)*Re(k)*(ue(i));
@@ -43,16 +46,13 @@ i=1;
                 laminar = false;    %Flow no longer laminar
                 ils = i;    %Save iteration where transition occurs
             end
-            
-        if int ~= 0 && int < ils;
-            disp(['Natural transition at ' num2str(Re(k))])
-            break
     end
+    
+    %Display Re at which transition will supplant laminar separation
+    if int ~= 0; 
+        disp(['Re_L at which transition supplants laminar transion is ',num2str(Re(k))])
+        break %break loop once required Re is found
     end
 end
 
-%if int ~= 0;
- %   disp(['Natural transition at ' num2str(x(int)) ' with Rethet ' num2str(Rethet)]);
-%elseif ils ~= 0;
- %   disp(['Laminar seperation at ' num2str(x(ils)) ' with Rethet ' num2str(Rethet)]);
-%end
+
