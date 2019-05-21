@@ -1,7 +1,7 @@
 clear
 close all
 
-%Input Conditions
+%Input Conditions, change according to required by Exercise
 Re = 1e6;
 duedx = -.5;
 
@@ -20,7 +20,7 @@ for i = 1:n;
     ue(i) = duedx*x(i)+ue0;
 end
 
-%To initialise loop loop
+%To initialise loop
 i = 1;
 while laminar && i < n; %laminar loop
     i = i+1;    %Increase interation counter
@@ -33,7 +33,7 @@ while laminar && i < n; %laminar loop
     He(i) = laminar_He(H);
     
     %Check for transition
-    if log(Rethet) >= 18.4*He(i) - 21.74;  
+    if log(Rethet) >= 18.4*He(i) - 21.74;  %Transition condition
         laminar = false;    %Flow no longer laminar 
         int = i;    %Save iteration at transition occurs
         display([x(i), Rethet/1000]);
