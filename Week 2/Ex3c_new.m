@@ -7,13 +7,8 @@ duedx = -.5;
 
 %Initial Conditions and Discretisation steps
 n = 101;
-laminar = true;
 x = linspace(0,1,n);
 ue0 = 1;
-
-%Initialise transition and separation indicators
-int = 0;
-ils = 0;
 
 %Generate a matrix of ue values
 for i = 1:n;
@@ -23,12 +18,18 @@ end
 %To initialise loop
 for k = 1:length(Re);
     i=1;
+    
+    %Initialise indicators at the start of every loop
     int = 0;
     ils = 0;
+    
+    %Reset laminar flag at the start of every loop
     laminar = true;
     
-    while laminar && i < n; %laminar loop
+    %Laminar loop
+    while laminar && i < n; 
         i = i+1;    %Increase interation counter
+        
         %Solve for theta, Rethet, m, H, He
         theta(i) = sqrt(.45/Re(k)*(ue(i))^-6*ueintbit(0,ue(1),x(i),ue(i)));
         Rethet = theta(i)*Re(k)*(ue(i));
@@ -49,7 +50,7 @@ for k = 1:length(Re);
     end
     
     %Display Re at which transition will supplant laminar separation
-    if int ~= 0; 
+    if int ~= 0; %If transition occurs before separation, ils = 0
         disp(['Re_L at which transition supplants laminar transion is ',num2str(Re(k))])
         break %break loop once required Re is found
     end

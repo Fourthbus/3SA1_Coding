@@ -6,7 +6,7 @@ global Re ue0 duedx
 
 %Define simulation conditions
 Re = 1e5;
-duedxtest = linspace(-0.55,-0.25,31);
+duedxtest = linspace(-0.55,-0.25,31); %Create an array for test gradient
 ue0 = 1;
 
 %Iteration setting & initial conditions
@@ -14,18 +14,10 @@ n = 101;
 laminar = true;
 x = linspace(0,1,n);
 
-%%initialsing indicators
-int = 0;    %natural transition
-ils = 0;    %laminar seperation
-itr = 0;    %turbulent reattachment
-its = 0;    %turbulent seperation
-
-%generating ue matrix
-
-
 for k = 1:length(duedxtest);
     duedx = duedxtest(k);
     
+    %generating ue matrix
     for i = 1:n;
         ue(i) = duedx*x(i)+ue0;
     end
@@ -90,25 +82,6 @@ for k = 1:length(duedxtest);
             break
         end
     
-
-    %while i < n;    %final loop
-     %   theta(i+1) = theta(i)*(ue(i)/ue(i+1))^(H+2);    %theta for cf=0
-      %  i = i+1;
-       % He(i) = He (its);   %H assumed to remain constant since He is constant
-    %end
     end
 end
 
-%plotting code -- manually input at command prompt
-%figure(1);
-%plot(x,He); %plot
-%xlabel('non dimensional position x/L');
-%ylabel('energy shape factor H_E');
-%title(['Re_L=',num2str(Re),' du_e/dx=',num2str(duedx)]);
-
-%figure(2);
-%plot(x,theta); %plot
-%xlabel('non dimensional position x/L');
-%ylabel('non dimensional momentum thickness \theta/L');
-%title(['Re_L=',num2str(Re),' du_e/dx=',num2str(duedx)]);
-%saveas(gcf,'EX6_2.pdf')
