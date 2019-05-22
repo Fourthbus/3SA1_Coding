@@ -15,6 +15,11 @@ ue0 = 1;
 int = 0;
 ils = 0;
 
+%initialising matrices
+ue = zeros(1,n);
+theta = zeros(1,n);
+He = zeros(1,n);
+
 %Generate a matrix of ue values
 for i = 1:n;
     ue(i) = duedx*x(i)+ue0;
