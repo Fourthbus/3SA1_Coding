@@ -26,9 +26,17 @@ function lhsmat = build_lhs(xs,ys)
     end
     %cutta condition: gamma_1 and gamma_np+1=0 so these two allow two rows
     %specifing these conditions i.e 1st or np+1th term=1, rest=0. N.B.
-    %rhs's cutta matches this accrodingly
+    %rhs's Kutta matches this accrodingly
     lhsmat(np,1) = 1;
-    lhsmat(np+1,np+1) =1;
+    lhsmat(np,2) = -1;
+    lhsmat(np,3) = 0.5;
+    lhsmat(np,np) = -0.5;
+    lhsmat(np,np+1) = 1;
+    lhsmat(np+1,2) = 1;
+    lhsmat(np+1,3) = -0.5;
+    lhsmat(np+1,np-1) = 0.5;
+    lhsmat(np+1,np) = 1;
+    lhsmat(np+1,np+1) = 1;
 end
 
         
