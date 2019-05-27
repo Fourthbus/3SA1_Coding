@@ -2,11 +2,7 @@ function [int ils itr its delstar theta] = bl_solv(x,cp);
 %Defining global variables value
 global Re ue0 duedx
 
-ue = (1-cp).^.5 %convert cp to ue
-
-
-%Define simulation conditions
-Re = 1e5;
+ue = (1-cp).^.5; %convert cp to ue
 
 %Iteration setting & initial conditions
 n = length(x);
@@ -20,11 +16,16 @@ its = 0;    %turbulent seperation
 ueint = 0;  %integral of ueintbit
 
 %initialising i
-i = 1;
+i = 0;
 while laminar && i < n; %laminar loop
     i = i+1;    %interpretation
-    duedx = (ue(i)-ue(i-1))/(x(i)-x(i-1));  %calculate duedx
-    ueint = ueint + ueintbit(x(i-1),ue(i-1),x(i),ue(i));    %calculating ueint 0->x
+    if i == 1;
+        duedx = ue(i)/x(i);  %calculate duedx
+        ueint = ueint + ueintbit(0,0,x(i),ue(i));    %calculating ueint 0->x
+    else
+        duedx = (ue(i)-ue(i-1))/(x(i)-x(i-1));  %calculate duedx
+        ueint = ueint + ueintbit(x(i-1),ue(i-1),x(i),ue(i));    %calculating ueint 0->x
+    end
     theta(i) = sqrt(.45/Re*(ue(i))^-6*ueint);
     Rethet = theta(i)*Re*(ue(i));
     m = -Re*(theta(i))^2*duedx;
