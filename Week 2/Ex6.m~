@@ -6,7 +6,7 @@ global Re ue0 duedx
 
 %Define simulation conditions
 Re = 1e5;
-duedx = -.38027;
+duedx = -0.380265;
 ue0 = 1;
 
 %Iteration setting & initial conditions
@@ -19,7 +19,6 @@ int = 0;    %natural transition
 ils = 0;    %laminar seperation
 itr = 0;    %turbulent reattachment
 its = 0;    %turbulent seperation
-ueint = 0;  %integral of ueintbit
 
 %generating ue matrix
 for i = 1:n;
@@ -30,8 +29,7 @@ end
 i = 1;
 while laminar && i < n; %laminar loop
     i = i+1;    %interpretation
-    ueint = ueint + ueintbit(x(i-1),ue(i-1),x(i),ue(i));    %calculating ueint 0->x
-    theta(i) = sqrt(.45/Re*(ue(i))^-6*ueint);
+    theta(i) = sqrt(.45/Re*(ue(i))^-6*ueintbit(x(i-1),ue(1),x(i),ue(i)));
     Rethet = theta(i)*Re*(ue(i));
     m = -Re*(theta(i))^2*duedx;
     H = thwaites_lookup(m);

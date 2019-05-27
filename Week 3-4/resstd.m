@@ -1,3 +1,5 @@
+close all
+clear
 %  Script for use in studying resolution requirements of panel method 
 %  calculation.  To alter incidence, edit 'alpha' below.  To alter
 %  Van de Vooren geometry parameters, see vdvfoil.m.
@@ -14,18 +16,18 @@ plot(xsin,ysin)
 axis('equal')
 xlabel('x/c')
 ylabel('y/c')
-title('Van de Vooren aerofoil')
+title('Van de Vooren aerofoil') %analytical exact solution
 
 disp('Starting 100 panel calculation ...')
 np = 100;
-[xs ys] = make_upanels( xsin, ysin, np );
+[xs ys] = make_upanels( xsin, ysin, np );   %general nodes position matrics
 
-A = build_lhs ( xs, ys );
+A = build_lhs ( xs, ys );   %see wk1 ex5
 b = build_rhs ( xs, ys, alpha );
 
 gams = inv(A) * b;
-xs1 = xs;
-cp1 = 1 - gams.^2;
+xs1 = xs;   %for plotting
+cp1 = 1 - gams.^2;  %cp for plotting
 
 disp('Starting 200 panel calculation ...')
 np = 200;

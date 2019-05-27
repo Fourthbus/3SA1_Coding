@@ -7,7 +7,6 @@ global Re ue0 duedx
 %Define simulation conditions
 Re = 1e5;
 duedxtest = linspace(-0.55,-0.25,31); %Create an array for test gradient
-ue0 = 1;
 
 %Iteration setting & initial conditions
 n = 101;
@@ -59,6 +58,7 @@ for k = 1:length(duedxtest);
     while its == 0 && i < n;    
         thick0(1) = theta(i);   %y matrix, value at elemental plate's start
         thick0(2) = deltaE(i);
+        ue0 = ue(i);    %declear ue0 used for odf45
         i = i+1;
         [delx thickhist] = ode45(@thickdash,[0,x(i)-x(i-1)],thick0);
         theta(i) = thickhist(length(delx),1);   %assign value at elemental plate's end

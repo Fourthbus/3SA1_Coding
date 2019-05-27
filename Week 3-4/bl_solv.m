@@ -1,18 +1,16 @@
-clear
-close all
-
+function [int ils itr its delstar theta] = bl_solv(x,cp);
 %Defining global variables value
 global Re ue0 duedx
 
+ue = (1-cp).^.5 %convert cp to ue
+
+
 %Define simulation conditions
 Re = 1e5;
-duedx = -.38027;
-ue0 = 1;
 
 %Iteration setting & initial conditions
-n = 101;
+n = length(x);
 laminar = true;
-x = linspace(0,1,n);
 
 %%initialsing indicators
 int = 0;    %natural transition
@@ -21,21 +19,17 @@ itr = 0;    %turbulent reattachment
 its = 0;    %turbulent seperation
 ueint = 0;  %integral of ueintbit
 
-%generating ue matrix
-for i = 1:n;
-    ue(i) = duedx*x(i)+ue0;
-end
-
 %initialising i
 i = 1;
 while laminar && i < n; %laminar loop
     i = i+1;    %interpretation
+    duedx = (ue(i)-ue(i-1))/(x(i)-x(i-1));  %calculate duedx
     ueint = ueint + ueintbit(x(i-1),ue(i-1),x(i),ue(i));    %calculating ueint 0->x
     theta(i) = sqrt(.45/Re*(ue(i))^-6*ueint);
     Rethet = theta(i)*Re*(ue(i));
     m = -Re*(theta(i))^2*duedx;
-    H = thwaites_lookup(m);
-    He(i) = laminar_He(H);
+    H(i) = thwaites_lookup(m);
+    He(i) = laminar_He(H(i));
     if log(Rethet) >= 18.4*He(i) - 21.74;   %laminar check
         laminar = false;    %laminar flag & end loop
         int = i;    %set pointer
@@ -65,6 +59,7 @@ while its == 0 && i < n;
     theta(i) = thickhist(length(delx),1);   %assign value at elemental plate's end
     deltaE(i) = thickhist(length(delx),2);
     He(i) = deltaE(i)/theta(i);
+    H(i) = (11*He(i)+15)/(48*He(i)-59); %calculate for H
     
     %Check for turbulent reattachment
     if ils > 0 && He(i) >= 1.58 && itr == 0;   
@@ -75,7 +70,7 @@ while its == 0 && i < n;
     %Check for turbulent separation
     if He(i) <= 1.46;   %turbulent seperation check
         its = i;
-        H=2.803;    %H at seperation
+        H(i)=2.803;    %H at seperation
         disp(['Turbulent Separation at x/L= ' num2str(x(its)) ' at Re_L ' num2str(Re)]);
     end
 end
@@ -84,18 +79,7 @@ while i < n;    %final loop
     theta(i+1) = theta(i)*(ue(i)/ue(i+1))^(H+2);    %theta for cf=0
     i = i+1;
     He(i) = He (its);   %H assumed to remain constant since He is constant
+    H(i) = H(its);
 end
 
-%plotting code -- manually input at command prompt
-%figure(1);
-%plot(x,He); %plot
-%xlabel('non dimensional position x/L');
-%ylabel('energy shape factor H_E');
-%title(['Re_L=',num2str(Re),' du_e/dx=',num2str(duedx)]);
-
-%figure(2);
-%plot(x,theta); %plot
-%xlabel('non dimensional position x/L');
-%ylabel('non dimensional momentum thickness \theta/L');
-%title(['Re_L=',num2str(Re),' du_e/dx=',num2str(duedx)]);
-%saveas(gcf,'EX6_2.pdf')
+delstar = H.*theta;
