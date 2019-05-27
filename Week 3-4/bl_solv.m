@@ -77,10 +77,10 @@ while its == 0 && i < n;
 end
 
 while i < n;    %final loop
-    theta(i+1) = theta(i)*(ue(i)/ue(i+1))^(H+2);    %theta for cf=0
-    i = i+1;
-    He(i) = He (its);   %H assumed to remain constant since He is constant
+    theta(i+1) = theta(i)*(ue(i)/ue(i+1))^(H(i)+2);    %theta for cf=0
+    i = i+1;  %H assumed to remain constant since He is constant
     H(i) = H(its);
 end
 
 delstar = H.*theta;
+end

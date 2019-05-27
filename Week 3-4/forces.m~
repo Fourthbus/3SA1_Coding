@@ -1,0 +1,8 @@
+function [cl cd] = forces(circ,cp,delstarl,thetal,delstaru,thetau);
+cl = -2*circ;   %calculate cl
+
+ue = (1-cp).^.5; %convert cp to ue
+Hte = (deltastaru(end)+deltastarl(end)) / (thetau(;
+thetainf = theta(1) * ue(1)^((H+5)/2);
+cd = 2*thetainf;
+end
