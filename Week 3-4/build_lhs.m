@@ -30,12 +30,10 @@ function lhsmat = build_lhs(xs,ys)
     lhsmat(np,1) = 1;
     lhsmat(np,2) = -1;
     lhsmat(np,3) = 0.5;
-    lhsmat(np,np) = -0.5;
-    lhsmat(np,np+1) = 1;
-    lhsmat(np+1,2) = 1;
-    lhsmat(np+1,3) = -0.5;
-    lhsmat(np+1,np-1) = 0.5;
-    lhsmat(np+1,np) = 1;
+    lhsmat(np,np-1) = -0.5;
+    lhsmat(np,np) = 1;
+
+    lhsmat(np+1,1) = 1;
     lhsmat(np+1,np+1) = 1;
 end
 
