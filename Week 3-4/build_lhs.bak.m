@@ -36,3 +36,5 @@ function lhsmat = build_lhs(xs,ys)
     lhsmat(np+1,1) = 1;
     lhsmat(np+1,np+1) = 1;
 end
+
+        

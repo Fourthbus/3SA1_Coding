@@ -1,0 +1,4 @@
+Section identifier              : lissaman
+Number of panels                : 1000
+Reynolds number                 : 3e5
+Range of incidences (degrees)   : -10:.5:20
