@@ -1,16 +1,14 @@
-function rhsvec = build_rhs(xs,ys,alpha);
-    %determine size and construct matrix
-    np = length(xs)-1;
-    psifs = zeros(np+1,1);
-    rhsvec = zeros(np,1);
-    for i = 1:np+1
-        psifs(i) = ys(i)*cos(alpha) - xs(i)*sin(alpha);
-    end
-    
-    for k = 1:np-1
-        rhsvec (k) = psifs(k) - psifs(k+1);
-    end    
-    %imposing Kutta Condition as specifying in lhs file
-    rhsvec(np) = 0;
-    rhsvec(np+1) = 0;
-end 
+function rhsvec = build_rhs(xs,ys,alpha)
+np = length(xs)-1;
+psifs = zeros(np+1,1);
+
+for i = 1:np-1
+    psifs(i,1)   = ys(i)  *cos(alpha)- xs(i)  *sin(alpha);
+    psifs(i+1,1) = ys(i+1)*cos(alpha)- xs(i+1)*sin(alpha);
+    rhsvec(i,1) = psifs(i,1)-psifs(i+1,1);
+end
+
+rhsvec(np,1)=0;
+rhsvec(np+1,1)=0;
+
+end

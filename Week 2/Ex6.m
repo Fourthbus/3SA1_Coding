@@ -61,6 +61,7 @@ while its == 0 && i < n;
     thick0(2) = deltaE(i);
     ue0 = ue(i);    %declear ue0 used for odf45
     i = i+1;
+    duedx=(ue(i)-ue(i-1))/(x(i)-x(i-1));
     [delx thickhist] = ode45(@thickdash,[0,x(i)-x(i-1)],thick0);
     theta(i) = thickhist(length(delx),1);   %assign value at elemental plate's end
     deltaE(i) = thickhist(length(delx),2);

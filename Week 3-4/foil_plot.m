@@ -70,8 +70,10 @@ for nalpha = 1:length(alpha)
 
 %    boundary layer solver
   [iunt iuls iutr iuts delstaru thetau] = bl_solv_plot ( su, cpu );
-  sunt(nalpha) = su(iunt+1); suls(nalpha) = su(iuls+1); sutr(nalpha) = su(iutr+1); suts(nalpha) = su(iuts+1);
-%    lower surface boundary layer calc
+  if iunt == 0; sunt(nalpha) = 0; else  sunt(nalpha) = su(iunt); end;
+  if iuls == 0; suls(nalpha) = 0; else  suls(nalpha) = su(iuls); end;
+  if iutr == 0; sutr(nalpha) = 0; else  sutr(nalpha) = su(iutr); end;
+  if iuts == 0; suts(nalpha) = 0; else  suts(nalpha) = su(iuts); end; %lower surface boundary layer calc
 
 %    first assemble pressure distribution along bl
   clear sl cpl
