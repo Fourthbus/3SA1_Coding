@@ -1,4 +1,4 @@
-function uplotter(alpha,sunt,suts,suls,sutr);
+function uplotter(alpha,sunt,suts,suls,sutr,slnt,slts,slls,sltr);
     close
     hold on
     plot(alpha,sunt);
@@ -7,5 +7,15 @@ function uplotter(alpha,sunt,suts,suls,sutr);
     plot(alpha,sutr);
     legend('natural transition', 'turbulent seperation', 'linear seperation', 'turbulent reattachment');
     title('upper surface')
+    hold off
+    
+    figure(2)
+    hold on
+    plot(alpha,slnt);
+    plot(alpha,slts);
+    plot(alpha,slls);
+    plot(alpha,sltr);
+    legend('natural transition', 'turbulent seperation', 'linear seperation', 'turbulent reattachment');
+    title('lower surface')
     hold off
 end
