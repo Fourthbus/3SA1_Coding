@@ -1,5 +1,5 @@
 function uplotter(alpha,sunt,suts,suls,sutr,slnt,slts,slls,sltr);
-    close
+    figure(1)
     hold on
     plot(alpha,sunt);
     plot(alpha,suts);
