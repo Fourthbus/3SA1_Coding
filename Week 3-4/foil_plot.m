@@ -70,10 +70,10 @@ for nalpha = 1:length(alpha)
 
 %    boundary layer solver
   [iunt iuls iutr iuts delstaru thetau] = bl_solv_plot ( su, cpu );
-  if iunt == 0; sunt(nalpha) = 0; else  sunt(nalpha) = su(iunt); end;
-  if iuls == 0; suls(nalpha) = 0; else  suls(nalpha) = su(iuls); end;
-  if iutr == 0; sutr(nalpha) = 0; else  sutr(nalpha) = su(iutr); end;
-  if iuts == 0; suts(nalpha) = 0; else  suts(nalpha) = su(iuts); end; %lower surface boundary layer calc
+  if iunt == 0; sunt(nalpha) = NaN; else  sunt(nalpha) = su(iunt); end;
+  if iuls == 0; suls(nalpha) = NaN; else  suls(nalpha) = su(iuls); end;
+  if iutr == 0; sutr(nalpha) = NaN; else  sutr(nalpha) = su(iutr); end;
+  if iuts == 0; suts(nalpha) = NaN; else  suts(nalpha) = su(iuts); end; %lower surface boundary layer calc
 
 %    first assemble pressure distribution along bl
   clear sl cpl
@@ -93,8 +93,12 @@ for nalpha = 1:length(alpha)
   end
 
 %    boundary layer solver
-  [ilnt(nalpha) ills(nalpha) iltr(nalpha) ilts(nalpha) delstarl thetal] = bl_solv_plot ( sl, cpl );
-
+  [ilnt ills iltr ilts delstarl thetal] = bl_solv_plot ( sl, cpl );
+  if ilnt == 0; slnt(nalpha) = NaN; else  slnt(nalpha) = sl(ilnt); end;
+  if ills == 0; slls(nalpha) = NaN; else  slls(nalpha) = sl(ills); end;
+  if iltr == 0; sltr(nalpha) = NaN; else  sltr(nalpha) = sl(iltr); end;
+  if ilts == 0; slts(nalpha) = NaN; else  slts(nalpha) = sl(ilts); end;
+  
 %    lift and drag coefficients
   [Cl Cd] = forces ( circ, cp, delstarl, thetal, delstaru, thetau );
 
