@@ -34,13 +34,13 @@ while laminar && i < n; %laminar loop
     if log(Rethet) >= 18.4*He(i) - 21.74;   %laminar check
         laminar = false;    %laminar flag & end loop
         int = i;    %set pointer
-        disp(['Turbulent Transition at x/L = ' num2str(x(int)) ' at Re_L ' num2str(Re)]);
+        %disp(['Turbulent Transition at x/L = ' num2str(x(int)) ' at Re_L ' num2str(Re)]);
         
     elseif m >= 0.09;   %seperation check
         laminar = false;    %also end laminar loop & turbulent formula
         ils = i;
         He(i) = 1.51509;    %set He to seperated value
-        disp(['Laminar Separation at x/L = ' num2str(x(ils)) ' at Re_L ' num2str(Re)])
+        %disp(['Laminar Separation at x/L = ' num2str(x(ils)) ' at Re_L ' num2str(Re)])
     end
 end
 
@@ -66,14 +66,14 @@ while its == 0 && i < n;
     %Check for turbulent reattachment
     if ils > 0 && He(i) >= 1.58 && itr == 0;   
         itr = i;
-        disp(['Turbulent Reattachmemt at x/L = ' num2str(x(itr)) ' at Re_L ' num2str(Re)]);
+        %disp(['Turbulent Reattachmemt at x/L = ' num2str(x(itr)) ' at Re_L ' num2str(Re)]);
     end
     
     %Check for turbulent separation
     if He(i) <= 1.46;   %turbulent seperation check
         its = i;
         H(i)=2.803;    %H at seperation
-        disp(['Turbulent Separation at x/L= ' num2str(x(its)) ' at Re_L ' num2str(Re)]);
+        %disp(['Turbulent Separation at x/L= ' num2str(x(its)) ' at Re_L ' num2str(Re)]);
     end
 end
 
