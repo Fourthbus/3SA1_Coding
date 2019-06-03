@@ -1,0 +1,4 @@
+Section identifier              : stansted8
+Number of panels                : 600
+Reynolds number                 : .5e6
+Range of incidences (degrees)   : -5:.25:15;

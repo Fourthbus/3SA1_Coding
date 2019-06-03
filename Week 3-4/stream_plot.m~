@@ -1,0 +1,35 @@
+close all
+
+%Constants
+xmin = -.5;
+xmax = 1.5;
+ymin = -1;
+ymax = 1;
+
+%Discretisation Steps
+nx = length(xmin:0.1:xmax);
+ny = 41;
+np = length(xs)-1;
+
+%Iteration for stream functions 
+for i =  1:nx;
+    for j = 1:ny;
+        xm(i,j) = xmin + (i-1)*(xmax-xmin)/(nx-1);
+        ym(i,j) = ymin + (j-1)*(ymax-ymin)/(ny-1);
+        %Uniform flow stream function
+        psi(i,j) = ym(i,j)*cos(alfrad) - xm(i,j)*sin(alfrad);
+        %Iterate for infa and infb using panelinf
+        for k = 1:np;
+            [infa(i,j,k) infb(i,j,k)] = panelinf(xs(k),xs(k+1),ys(k),ys(k+1),xm(i,j),ym(i,j));
+            %Sum of uniform flow, gamma_a*infa, and gamma_b*infb
+            psi(i,j) = psi (i,j) + gam(k)*infa(i,j,k) + gam(k+1)*infb(i,j,k);
+        end
+    end
+end
+
+c = -1.75:0.05:1.75;
+contour(xm,ym,psi,c)
+title('Cylinder Flow Streamlines')
+hold on
+plot (xs,ys)
+hold off

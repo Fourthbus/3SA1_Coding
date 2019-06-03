@@ -119,17 +119,20 @@ hold off
 
 figure (2)
 hold on
-plot (xs,-cp)
+plot (xs,cp)
 title('Coefficient of Pressure Distribution')
 xlabel('xs')
-ylabel('cp')
+ylabel('c_p')
 hold off
 
 figure (3)
+[xm,ym,psi] = stream_plot(xs,ys,gam,alfrad);
+c = -1.5:0.1:1.5;
+title('Cylinder Flow Streamlines')
 hold on
+contour(xm,ym,psi,c)
 plot (xs,ys)
-title('Airfoil Shape')
-ylim ([-0.5 0.5])
+axis equal
 hold off
 
 %  save alpha sweep data in summary file
