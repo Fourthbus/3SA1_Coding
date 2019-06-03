@@ -1,5 +1,5 @@
 function uplotter(alpha,sunt,suts,suls,sutr,slnt,slts,slls,sltr);
-    figure(1)
+    figure(4)
     hold on
     plot(alpha,sunt);
     plot(alpha,suts);
@@ -9,7 +9,7 @@ function uplotter(alpha,sunt,suts,suls,sutr,slnt,slts,slls,sltr);
     title('upper surface')
     hold off
     
-    figure(2)
+    figure(5)
     hold on
     plot(alpha,slnt);
     plot(alpha,slts);

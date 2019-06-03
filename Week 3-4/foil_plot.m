@@ -70,10 +70,10 @@ for nalpha = 1:length(alpha)
 
 %    boundary layer solver
   [iunt iuls iutr iuts delstaru thetau] = bl_solv_plot ( su, cpu );
-  if iunt == 0; sunt(nalpha) = NaN; else  sunt(nalpha) = su(iunt); end;
-  if iuls == 0; suls(nalpha) = NaN; else  suls(nalpha) = su(iuls); end;
-  if iutr == 0; sutr(nalpha) = NaN; else  sutr(nalpha) = su(iutr); end;
-  if iuts == 0; suts(nalpha) = NaN; else  suts(nalpha) = su(iuts); end; %lower surface boundary layer calc
+  if iunt == 0; sunt(nalpha) = NaN; else  sunt(nalpha) = su(iunt)/su(end); end;
+  if iuls == 0; suls(nalpha) = NaN; else  suls(nalpha) = su(iuls)/su(end); end;
+  if iutr == 0; sutr(nalpha) = NaN; else  sutr(nalpha) = su(iutr)/su(end); end;
+  if iuts == 0; suts(nalpha) = NaN; else  suts(nalpha) = su(iuts)/su(end); end; %lower surface boundary layer calc
 
 %    first assemble pressure distribution along bl
   clear sl cpl
@@ -94,10 +94,10 @@ for nalpha = 1:length(alpha)
 
 %    boundary layer solver
   [ilnt ills iltr ilts delstarl thetal] = bl_solv_plot ( sl, cpl );
-  if ilnt == 0; slnt(nalpha) = NaN; else  slnt(nalpha) = sl(ilnt); end;
-  if ills == 0; slls(nalpha) = NaN; else  slls(nalpha) = sl(ills); end;
-  if iltr == 0; sltr(nalpha) = NaN; else  sltr(nalpha) = sl(iltr); end;
-  if ilts == 0; slts(nalpha) = NaN; else  slts(nalpha) = sl(ilts); end;
+  if ilnt == 0; slnt(nalpha) = NaN; else  slnt(nalpha) = sl(ilnt)/sl(end); end;
+  if ills == 0; slls(nalpha) = NaN; else  slls(nalpha) = sl(ills)/sl(end); end;
+  if iltr == 0; sltr(nalpha) = NaN; else  sltr(nalpha) = sl(iltr)/sl(end); end;
+  if ilts == 0; slts(nalpha) = NaN; else  slts(nalpha) = sl(ilts)/sl(end); end;
   
 %    lift and drag coefficients
   [Cl Cd] = forces ( circ, cp, delstarl, thetal, delstaru, thetau );
@@ -108,6 +108,29 @@ for nalpha = 1:length(alpha)
   cdswp(nalpha) = Cd;
   lovdswp(nalpha) = Cl/Cd;
 end
+
+figure (1)
+hold on
+plot (alpha,lovdswp)
+title('L/D across \alpha')
+xlabel('\alpha')
+ylabel('L/D')
+hold off
+
+figure (2)
+hold on
+plot (xs,-cp)
+title('Coefficient of Pressure Distribution')
+xlabel('xs')
+ylabel('cp')
+hold off
+
+figure (3)
+hold on
+plot (xs,ys)
+title('Airfoil Shape')
+ylim ([-0.5 0.5])
+hold off
 
 %  save alpha sweep data in summary file
 
