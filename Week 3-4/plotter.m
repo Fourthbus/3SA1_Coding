@@ -39,3 +39,5 @@ xlabel('\alpha')
 ylabel('position/section length')
 title('lower surface')
 hold off
+
+set(gcf, 'Position',  [10, 10, 600, 1200])

@@ -1,9 +1,9 @@
-function [xm,ym,psi] = stream_plot(xs,ys,gam,alfrad);
+function [xm,ym,psi,c] = stream_plot(xs,ys,gam,alfrad);
     %Constants
-    xmin = -.5;
-    xmax = 1.5;
-    ymin = -1;
-    ymax = 1;
+    xmin = -.25;
+    xmax = 1.25;
+    ymin = -.25;
+    ymax = .25;
 
     %Discretisation Steps
     nx = length(xmin:0.025:xmax);
@@ -27,4 +27,5 @@ function [xm,ym,psi] = stream_plot(xs,ys,gam,alfrad);
             end
         end
     end
+    c = psi(51,11)-1.5:.05:psi(51,11)+1.5;
 end

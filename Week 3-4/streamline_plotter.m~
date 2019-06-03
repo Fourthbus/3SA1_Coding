@@ -118,7 +118,6 @@ for nalpha = 1:length(alpha)
   title(['\alpha = ',num2str(alpha(nalpha)),' deg'])
   hold on
   plot (xs,ys,'k')
-  fill (xs,ys,[0.8,0.8,0.8])
   plot (xs(ipstag+ills),ys(ipstag+ills),'mv'); plot (xs(ipstag-iuls),ys(ipstag-iuls),'m^')    %lam sep
   plot (xs(ipstag+iltr),ys(ipstag+iltr),'g^'); plot (xs(ipstag-iutr),ys(ipstag-iutr),'gv')    %turb rat
   plot (xs(ipstag+ilnt),ys(ipstag+ilnt),'b+'); plot (xs(ipstag-iunt),ys(ipstag-iunt),'b+')    %norm tran
@@ -127,7 +126,7 @@ for nalpha = 1:length(alpha)
   axis equal
   hold off
 end
-set(gcf, 'Position',  [700, 0, 950, 800])
+
 
 %  save alpha sweep data in summary file
 
