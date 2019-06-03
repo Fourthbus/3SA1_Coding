@@ -14,6 +14,9 @@ parfile = ['Parfiles/' caseref '.txt'];
 fprintf(1, '%s\n\n', ['Reading in parameter file: ' parfile])
 [section np Re alpha] = par_read(parfile);
 
+%input alpha here
+alpha = input('Alpha (deg): ');
+
 %  Read in the section geometry
 secfile = ['Geometry/' section '.surf'];
 [xk yk] = textread ( secfile, '%f%f' );
@@ -107,33 +110,23 @@ for nalpha = 1:length(alpha)
   clswp(nalpha) = Cl;
   cdswp(nalpha) = Cd;
   lovdswp(nalpha) = Cl/Cd;
+  
+  figure(nalpha+1);
+  [xm,ym,psi] = stream_plot(xs,ys,gam,alfrad);
+  c = -1.5:0.05:1.5;
+  contour(xm,ym,psi,c)
+  title(['\alpha = ',num2str(alpha(nalpha)),' deg'])
+  hold on
+  plot (xs,ys,'k')
+  plot (xs(ipstag),ys(ipstag),'k*') %stag point
+  plot (xs(ipstag+ills),ys(ipstag+ills),'mv'); plot (xs(ipstag-iuls),ys(ipstag-iuls),'m^')    %lam sep
+  plot (xs(ipstag+iltr),ys(ipstag+iltr),'g^'); plot (xs(ipstag-iutr),ys(ipstag-iutr),'gv')    %turb rat
+  plot (xs(ipstag+ilnt),ys(ipstag+ilnt),'c+'); plot (xs(ipstag-iunt),ys(ipstag-iunt),'c+')    %norm tran
+  plot (xs(ipstag+ilts),ys(ipstag+ilts),'r>'); plot (xs(ipstag-iuts),ys(ipstag-iuts),'r>')    %turb sep
+  axis equal
+  hold off
 end
 
-subplot(4,3,1)
-hold on
-plot (alpha,lovdswp)
-title('L/D across \alpha')
-xlabel('\alpha')
-ylabel('L/D')
-hold off
-
-subplot(4,3,2)
-hold on
-plot (xs,cp)
-title('Coefficient of Pressure Distribution')
-xlabel('xs')
-ylabel('c_p')
-hold off
-
-subplot(4,3,[2,3,5,6,8,9])
-[xm,ym,psi] = stream_plot(xs,ys,gam,alfrad);
-c = -1.5:0.05:1.5;
-title('Cylinder Flow Streamlines')
-hold on
-contour(xm,ym,psi,c)
-plot (xs,ys)
-%axis equal
-hold off
 
 %  save alpha sweep data in summary file
 

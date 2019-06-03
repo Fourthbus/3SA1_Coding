@@ -13,6 +13,7 @@ plot (alpha,lovdswp)
 %title('L/D across \alpha')
 xlabel('\alpha')
 ylabel('L/D')
+legend
 hold off
 
 subplot(4,1,3)
@@ -37,14 +38,4 @@ legend('natural transition', 'turbulent seperation', 'linear seperation', 'turbu
 xlabel('\alpha')
 ylabel('position/section length')
 title('lower surface')
-hold off
-
-figure(2);
-[xm,ym,psi] = stream_plot(xs,ys,gam,alfrad);
-c = -1.5:0.05:1.5;
-%title('Streamlines')
-hold on
-contour(xm,ym,psi,c)
-plot (xs,ys,'k')
-%axis equal
 hold off
