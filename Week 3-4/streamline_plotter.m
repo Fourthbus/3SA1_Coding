@@ -120,10 +120,10 @@ for nalpha = 1:length(alpha)
   hold on
   plot (xs,ys,'k')
   fill (xs,ys,[0.8,0.8,0.8])
-  plot (xs(ipstag+ills),ys(ipstag+ills),'mv'); plot (xs(ipstag-iuls),ys(ipstag-iuls),'m^')    %lam sep
-  plot (xs(ipstag+iltr),ys(ipstag+iltr),'g^'); plot (xs(ipstag-iutr),ys(ipstag-iutr),'gv')    %turb rat
-  plot (xs(ipstag+ilnt),ys(ipstag+ilnt),'b+'); plot (xs(ipstag-iunt),ys(ipstag-iunt),'b+')    %norm tran
-  plot (xs(ipstag+ilts),ys(ipstag+ilts),'r>'); plot (xs(ipstag-iuts),ys(ipstag-iuts),'r>')    %turb sep
+  plot (xs(ipstag+ills),ys(ipstag+ills),'mv'); plot (xs(ipstag-iuls+1),ys(ipstag-iuls+1),'m^')    %lam sep
+  plot (xs(ipstag+iltr),ys(ipstag+iltr),'g^'); plot (xs(ipstag-iutr+1),ys(ipstag-iutr+1),'gv')    %turb rat
+  plot (xs(ipstag+ilnt),ys(ipstag+ilnt),'b+'); plot (xs(ipstag-iunt+1),ys(ipstag-iunt+1),'b+')    %norm tran
+  plot (xs(ipstag+ilts),ys(ipstag+ilts),'r>'); plot (xs(ipstag-iuts+1),ys(ipstag-iuts+1),'r>')    %turb sep
   plot (xs(ipstag),ys(ipstag),'k*') %stag point
   axis equal
   hold off
