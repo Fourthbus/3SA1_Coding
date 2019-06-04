@@ -1,5 +1,5 @@
 figure(1);
-sgtitle(section);
+suptitle(section);
 subplot(3,1,1)
 hold on
 plot (alpha,lovdswp)
