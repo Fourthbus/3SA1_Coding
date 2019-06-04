@@ -131,9 +131,9 @@ for nalpha = 1:length(alpha)
   
   figure(3);
   hold on
-  plot (xs,cp,'DisplayName',[section, ', \alpha = ',num2str(alpha(nalpha)),' deg'])
+  plot (xs,-cp,'DisplayName',[section, ', \alpha = ',num2str(alpha(nalpha)),' deg'])
   xlabel('xs')
-  ylabel('c_p')
+  ylabel('-c_p')
   legend
   hold off
 end
