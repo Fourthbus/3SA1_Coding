@@ -112,6 +112,7 @@ for nalpha = 1:length(alpha)
   lovdswp(nalpha) = Cl/Cd;
   
   figure(2);
+  %he
   subplot(2,1,nalpha);
   [xm,ym,psi,c] = stream_plot(xs,ys,gam,alfrad);
   contour(xm,ym,psi,c)
@@ -126,7 +127,16 @@ for nalpha = 1:length(alpha)
   plot (xs(ipstag),ys(ipstag),'k*') %stag point
   axis equal
   hold off
+  
+  figure(3);
+  hold on
+  plot (xs,cp,'DisplayName',[num2str(alpha(nalpha)),' deg'])
+  xlabel('xs')
+  ylabel('c_p')
+  legend
+  hold off
 end
+figure(2)
 set(gcf, 'Position',  [700, 0, 950, 800])
 
 %  save alpha sweep data in summary file

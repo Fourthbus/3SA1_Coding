@@ -27,5 +27,5 @@ function [xm,ym,psi,c] = stream_plot(xs,ys,gam,alfrad);
             end
         end
     end
-    c = psi(51,11)-1.5:.05:psi(51,11)+1.5;
+    c = psi(51,11)-1.5:.02:psi(51,11)+1.5;
 end
