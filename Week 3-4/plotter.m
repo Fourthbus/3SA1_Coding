@@ -1,8 +1,9 @@
 figure(1);
+sgtitle(section);
 subplot(3,1,1)
 hold on
 plot (alpha,lovdswp)
-%title('L/D across \alpha')
+title('L/D across \alpha')
 xlabel('\alpha')
 ylabel('L/D')
 %legend

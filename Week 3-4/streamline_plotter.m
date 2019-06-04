@@ -15,7 +15,8 @@ fprintf(1, '%s\n\n', ['Reading in parameter file: ' parfile])
 [section np Re alpha] = par_read(parfile);
 
 %input alpha here
-alpha = input('Alpha (deg): ');
+%alpha = input('Alpha (deg): ');
+alpha = 0:3:9;
 
 %  Read in the section geometry
 secfile = ['Geometry/' section '.surf'];
@@ -113,7 +114,7 @@ for nalpha = 1:length(alpha)
   
   figure(2);
   %he
-  subplot(2,1,nalpha);
+  subplot(2,2,nalpha);
   [xm,ym,psi,c] = stream_plot(xs,ys,gam,alfrad);
   contour(xm,ym,psi,c)
   title(['\alpha = ',num2str(alpha(nalpha)),' deg'])
@@ -130,14 +131,15 @@ for nalpha = 1:length(alpha)
   
   figure(3);
   hold on
-  plot (xs,cp,'DisplayName',[num2str(alpha(nalpha)),' deg'])
+  plot (xs,cp,'DisplayName',[section, ', \alpha = ',num2str(alpha(nalpha)),' deg'])
   xlabel('xs')
   ylabel('c_p')
   legend
   hold off
 end
 figure(2)
-set(gcf, 'Position',  [700, 0, 950, 800])
+sgtitle(section);
+set(gcf, 'Position',  [700, 0, 1700, 750]);
 
 %  save alpha sweep data in summary file
 
