@@ -111,5 +111,5 @@ end
 
 %  save alpha sweep data in summary file
 
-%fname = ['Data/' caseref '.mat'];
-%save ( fname, 'xs', 'ys', 'alpha', 'clswp', 'cdswp', 'lovdswp' )
+fname = ['Data/' section '.mat'];
+save ( fname, 'xs', 'ys', 'alpha', 'clswp', 'cdswp', 'lovdswp','sunt','suts','suls','sutr','slnt','slts','slls','sltr' )

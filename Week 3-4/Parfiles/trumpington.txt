@@ -1,0 +1,4 @@
+Section identifier              : Trumpington
+Number of panels                : 1000
+Reynolds number                 : .5e6
+Range of incidences (degrees)   : -5:.2:15;
