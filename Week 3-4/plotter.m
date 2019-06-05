@@ -15,7 +15,7 @@ plot(alpha,sunt);
 plot(alpha,suts);
 plot(alpha,suls);
 plot(alpha,sutr);
-legend('natural transition', 'turbulent separation', 'linear separation', 'turbulent reattachment');
+legend('natural transition', 'turbulent separation', 'linear separation', 'turbulent reattachment','Location','southwest');
 xlabel('\alpha')
 ylabel('position/section length')
 title('upper surface')
@@ -27,7 +27,7 @@ plot(alpha,slnt);
 plot(alpha,slts);
 plot(alpha,slls);
 plot(alpha,sltr);
-legend('natural transition', 'turbulent separation', 'linear separation', 'turbulent reattachment');
+legend('natural transition', 'turbulent separation', 'linear separation', 'turbulent reattachment','Location','northwest');
 xlabel('\alpha')
 ylabel('position/section length')
 title('lower surface')
