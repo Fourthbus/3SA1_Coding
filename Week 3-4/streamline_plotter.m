@@ -138,7 +138,7 @@ for nalpha = 1:length(alpha)
   hold off
 end
 figure(2)
-sgtitle(section);
+suptitle(section);
 set(gcf, 'Position',  [700, 0, 1700, 750]);
 
 %  save alpha sweep data in summary file

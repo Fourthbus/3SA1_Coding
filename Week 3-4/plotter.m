@@ -18,6 +18,7 @@ plot(alpha,sutr);
 legend('natural transition', 'turbulent separation', 'linear separation', 'turbulent reattachment','Location','southwest');
 xlabel('\alpha')
 ylabel('position/section length')
+ylim([0,1]);
 title('upper surface')
 hold off
 
@@ -30,6 +31,7 @@ plot(alpha,sltr);
 legend('natural transition', 'turbulent separation', 'linear separation', 'turbulent reattachment','Location','northwest');
 xlabel('\alpha')
 ylabel('position/section length')
+ylim([0,1]);
 title('lower surface')
 hold off
 

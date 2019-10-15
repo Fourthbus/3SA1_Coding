@@ -1,0 +1,6 @@
+figure(1)
+hold on
+plot(alpha,clswp,'k-o');
+figure(2)
+hold on
+plot(clswp,cdswp,'k-o');

@@ -103,7 +103,6 @@ for nalpha = 1:length(alpha)
   [Cl Cd] = forces ( circ, cp, delstarl, thetal, delstaru, thetau );
 
 %    copy Cl and Cd into arrays for alpha sweep plots
-
   clswp(nalpha) = Cl;
   cdswp(nalpha) = Cd;
   lovdswp(nalpha) = Cl/Cd;
@@ -111,5 +110,5 @@ end
 
 %  save alpha sweep data in summary file
 
-fname = ['Data/' section '.mat'];
+fname = ['Data/' caseref '.mat'];
 save ( fname, 'xs', 'ys', 'alpha', 'clswp', 'cdswp', 'lovdswp','sunt','suts','suls','sutr','slnt','slts','slls','sltr' )
